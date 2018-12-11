@@ -1,0 +1,21 @@
+{
+  "name": "@vesta/theme",
+  "version": "0.1.0",
+  "description": "vesta style in jss",
+  "license": "Apache-2.0",
+  "author": "hbtb <bishehsary@gmail.com>",
+  "contributors": [
+    "javadkh2 <khalilian.javad@gmail.com>"
+  ],
+  "scripts": {
+    "start": "gulp",
+    "deploy": "gulp publish"
+  },
+  "dependencies": {
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "@vesta/devmaid": "^0.4.4",
+    "gulp": "^4.0.0"
+  }
+}
