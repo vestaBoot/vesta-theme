@@ -24,5 +24,5 @@ export const Black = "#000";
 export const White = "#fff";
 // derived colors
 export const SemiDark = "#555";
-export const HalfLight = "777";
+export const HalfLight = "#777";
 export const SemiLight = "#bbb";

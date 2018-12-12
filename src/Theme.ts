@@ -1,9 +1,4 @@
-import { Black, Blue, SemiDark, White } from "./Colors";
-import { IColor } from "./Theme/Color";
-import { ILayout } from "./Theme/Layout";
-import { ISize } from "./Theme/Size";
-import { ITiming } from "./Theme/Timing";
-import { IZindex } from "./Theme/ZIndex";
+import { Black, Blue, SemiDark, Silver, White } from "./Colors";
 import { fontSize } from "./Util";
 
 export interface ITheme {
@@ -12,28 +7,89 @@ export interface ITheme {
     float: "right" | "left";
     oppositeFloat: "right" | "left";
     dirCoef: -1 | 1;
-
     fontFamily: string;
-
-    color: IColor;
-    layout: ILayout;
-    size: ISize;
-    timing: ITiming;
-    zIndex: IZindex;
+    color: {
+        Border: string;
+        Primary: string;
+        PrimaryText: string;
+        PrimaryLight: string;
+        PrimaryLightText: string;
+        PrimaryDark: string;
+        PrimaryDarkText: string;
+        PrimaryBackground: string;
+        PrimaryBackgroundText: string;
+        Secondary: string;
+        SecondaryText: string;
+        Default: string;
+        DefaultText: string;
+        Success: string;
+        Error: string;
+        Info: string;
+        Warning: string;
+    };
+    layout: {
+        Small: number;
+        Medium: number;
+        Large: number;
+        Xlarge: number;
+    };
+    size: {
+        unit: number;
+        borderRadius: number;
+        fontSize: {
+            Xsmall: number;
+            Small: number;
+            Base: number;
+            Medium: number;
+            Large: number;
+            Xlarge: number;
+            XXlarge: number;
+        },
+        header: {
+            Height: number;
+            Padding: number;
+        },
+        breadcrumbHeight: number;
+        footerHeight: number;
+        sidenavWidth: number;
+        pageMaxWidth: number;
+    };
+    timing: {
+        Short: number;
+        Medium: number;
+        Long: number;
+        Default: number;
+    };
+    easing: {
+        EaseIn: string,
+        EaseOut: string,
+        EaseInOut: string,
+        Default: string,
+    }
+    zIndex: {
+        Base: number;
+        Content: number;
+        Header: number;
+        Sidenav: number;
+        Navbar: number;
+        Dialog: number;
+        Datepicker: number;
+        Actionsheet: number;
+        Splash: number;
+        Notification: number;
+    };
 }
 
-export function createTheme(customStyle?: Partial<ITheme>): ITheme {
-    const finalizedStyle = getDefaultStyle();
+export function createTheme(iTheme?: Partial<ITheme>): ITheme {
+    const fTheme = getDefaultStyle();
 
-    if (!customStyle) {
-        return finalizedStyle;
+    if (iTheme) {
+        for (let keys = Object.keys(iTheme), i = keys.length; i--;) {
+            (fTheme as any)[keys[i]] = (iTheme as any)[keys[i]];
+        }
     }
 
-    for (let keys = Object.keys(customStyle), i = keys.length; i--;) {
-        (finalizedStyle as any)[keys[i]] = (customStyle as any)[keys[i]];
-    }
-
-    return finalizedStyle;
+    return fTheme;
 }
 
 function finalizeTheme(theme: ITheme): ITheme {
@@ -49,8 +105,12 @@ function getDefaultStyle(): ITheme {
     const style: ITheme = {
         direction: "ltr",
         float: "left",
+        oppositeDirection: "rtl",
+        oppositeFloat: "right",
+        dirCoef: 1,
         fontFamily: "Verdana, Geneva, sans-serif",
         color: {
+            Border: Silver,
             Primary: "#519af7",
             PrimaryText: "$black",
             PrimaryLight: "#a9d4ff",
@@ -101,6 +161,12 @@ function getDefaultStyle(): ITheme {
             Long: 750,
             Default: 250,
         },
+        easing: {
+            EaseIn: "ease-in",
+            EaseOut: "ease-out",
+            EaseInOut: "ease-in-out",
+            Default: "ease-in-out",
+        },
         zIndex: {
             Base: 1,
             Content: 2,
@@ -113,7 +179,7 @@ function getDefaultStyle(): ITheme {
             Splash: 90,
             Notification: 99,
         },
-    } as ITheme;
+    };
 
     return finalizeTheme(style);
 }
