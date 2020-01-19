@@ -1,4 +1,4 @@
-const { Indexer, Packager } = require("@vesta/devmaid");
+const { genIndex, Packager } = require("@vesta/devmaid");
 const gulp = require("gulp");
 
 let pkgr = new Packager({
@@ -17,7 +17,6 @@ module.exports = {
 }
 
 function indexer() {
-    const indexer = new Indexer("src");
-    indexer.generate();
+    genIndex("src");
     return Promise.resolve();
 }

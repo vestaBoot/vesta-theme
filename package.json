@@ -1,23 +1,23 @@
 {
-  "name": "@vesta/theme",
-  "version": "0.1.3",
-  "description": "vesta style in jss",
-  "license": "Apache-2.0",
-  "author": "hbtb <bishehsary@gmail.com>",
-  "contributors": [
-    "javadkh2 <khalilian.javad@gmail.com>"
-  ],
-  "scripts": {
-    "start": "gulp",
-    "deploy": "gulp publish"
-  },
-  "dependencies": {
-    "@types/color": "^3.0.0",
-    "color": "^3.1.0",
-    "typescript": "^3.2.2"
-  },
-  "devDependencies": {
-    "@vesta/devmaid": "^0.4.4",
-    "gulp": "^4.0.0"
-  }
+    "name": "@vesta/theme",
+    "version": "0.1.4",
+    "description": "vesta style in jss",
+    "license": "Apache-2.0",
+    "author": "hbtb <bishehsary@gmail.com>",
+    "contributors": [
+        "javadkh2 <khalilian.javad@gmail.com>"
+    ],
+    "scripts": {
+        "start": "gulp",
+        "deploy": "gulp publish"
+    },
+    "dependencies": {
+        "@types/color": "^3.0.1",
+        "color": "^3.1.2",
+        "typescript": "^3.7.5"
+    },
+    "devDependencies": {
+        "@vesta/devmaid": "^0.4.9",
+        "gulp": "^4.0.2"
+    }
 }
