@@ -1,13 +1,13 @@
-import { Black, Blue, SemiDark, Silver, White } from "./Colors";
+import { Black, Blue, Dark, SemiDark, Silver, White } from "./Colors";
 import { fontSize } from "./Util";
 
 export interface ITheme {
-    direction: "rtl" | "ltr";
-    oppositeDirection: "rtl" | "ltr";
-    float: "right" | "left";
-    oppositeFloat: "right" | "left";
-    dirCoef: -1 | 1;
-    fontFamily: string;
+    Direction: "rtl" | "ltr";
+    OppositeDirection: "rtl" | "ltr";
+    Float: "right" | "left";
+    OppositeFloat: "right" | "left";
+    DirCoef: -1 | 1;
+    FontFamily: string;
     color: {
         Border: string;
         Primary: string;
@@ -26,6 +26,10 @@ export interface ITheme {
         Error: string;
         Info: string;
         Warning: string;
+        form: {
+            ElementBackground: string;
+            ElementColor: string;
+        };
     };
     layout: {
         Small: number;
@@ -34,8 +38,28 @@ export interface ITheme {
         Xlarge: number;
     };
     size: {
-        unit: number;
-        borderRadius: number;
+        Unit: number;
+        BorderRadius: number;
+        BreadcrumbHeight: number;
+        FooterHeight: number;
+        SidenavWidth: number;
+        PageMaxWidth: number;
+        element: {
+            height: number;
+            heightLarge: number;
+            heightXLarge: number;
+            padding: number;
+            margin: number;
+            minWidth: number;
+        };
+        form: {
+            GroupPadding: number;
+            GroupMargin: number;
+            ElementHeight: number;
+            ElementHeightLarge: number;
+            ElementPadding: number;
+            ElementBorderRadius: number;
+        };
         fontSize: {
             Xsmall: number;
             Small: number;
@@ -44,15 +68,11 @@ export interface ITheme {
             Large: number;
             Xlarge: number;
             XXlarge: number;
-        },
+        };
         header: {
             Height: number;
             Padding: number;
-        },
-        breadcrumbHeight: number;
-        footerHeight: number;
-        sidenavWidth: number;
-        pageMaxWidth: number;
+        };
     };
     timing: {
         Short: number;
@@ -94,27 +114,27 @@ export function createTheme(iTheme?: Partial<ITheme>): ITheme {
 
 function finalizeTheme(theme: ITheme): ITheme {
 
-    theme.oppositeDirection = theme.direction === "ltr" ? "rtl" : "ltr";
-    theme.oppositeFloat = theme.float = "left" ? "right" : "left";
-    theme.dirCoef = theme.float === "left" ? 1 : -1;
+    theme.OppositeDirection = theme.Direction === "ltr" ? "rtl" : "ltr";
+    theme.OppositeFloat = theme.Float = "left" ? "right" : "left";
+    theme.DirCoef = theme.Float === "left" ? 1 : -1;
 
     return theme;
 }
 
 function getDefaultStyle(): ITheme {
     const style: ITheme = {
-        direction: "ltr",
-        float: "left",
-        oppositeDirection: "rtl",
-        oppositeFloat: "right",
-        dirCoef: 1,
-        fontFamily: "Verdana, Geneva, sans-serif",
+        Direction: "ltr",
+        Float: "left",
+        OppositeDirection: "rtl",
+        OppositeFloat: "right",
+        DirCoef: 1,
+        FontFamily: "Verdana, Geneva, sans-serif",
         color: {
             Border: Silver,
             Primary: "#519af7",
-            PrimaryText: "$black",
+            PrimaryText: Black,
             PrimaryLight: "#a9d4ff",
-            PrimaryLightText: "$black",
+            PrimaryLightText: Black,
             PrimaryDark: "#4375ac",
             PrimaryDarkText: White,
             PrimaryBackground: White,
@@ -127,6 +147,10 @@ function getDefaultStyle(): ITheme {
             Error: "#f15b44",
             Info: Blue,
             Warning: "#fdc600",
+            form: {
+                ElementBackground: White,
+                ElementColor: Dark
+            }
         },
         layout: {
             Small: 320,
@@ -135,9 +159,12 @@ function getDefaultStyle(): ITheme {
             Xlarge: 1024,
         },
         size: {
-            unit: 4,
-            borderRadius: 5,
-            breadcrumbHeight: 45,
+            Unit: 4,
+            BorderRadius: 5,
+            BreadcrumbHeight: 45,
+            FooterHeight: 32,
+            SidenavWidth: 320,
+            PageMaxWidth: 768,
             fontSize: {
                 Xsmall: fontSize(.65),
                 Small: fontSize(.85),
@@ -151,9 +178,22 @@ function getDefaultStyle(): ITheme {
                 Height: 56,
                 Padding: 16,
             },
-            footerHeight: 32,
-            sidenavWidth: 320,
-            pageMaxWidth: 768,
+            element: {
+                height: 32,
+                heightLarge: 48,
+                heightXLarge: 64,
+                margin: 4,
+                minWidth: 64,
+                padding: 8
+            },
+            form: {
+                ElementBorderRadius: 5,
+                ElementHeight: 32,
+                ElementHeightLarge: 48,
+                ElementPadding: 8,
+                GroupMargin: 4,
+                GroupPadding: 8
+            }
         },
         timing: {
             Short: 250,
